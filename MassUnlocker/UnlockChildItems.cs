@@ -9,11 +9,10 @@ using Sitecore.Web.UI.Sheer;
 
 namespace ChildrenUnlocker
 {
-    // TODO: \App_Config\include\UnlockChildItems.config created automatically when creating UnlockChildItems class. In this config include file, specify command name attribute value
-
     [Serializable]
     public class UnlockChildItems : Command
     {
+        public const string ModalTitle = "Unlock Items";
         protected IUnlockUtility UnlockUtility = new UnlockUtility();
 
         public override void Execute([NotNull] CommandContext context)
@@ -25,8 +24,9 @@ namespace ChildrenUnlocker
             var lockedChildren = selectedItem.Children.Where(i => i.Locking.IsLocked()).ToList();
             if (!lockedChildren.Any())
             {
-                //Report instead
-                Log.Info("Item '" + selectedItem.Name + "' does not have child items that are locked.", this);
+                SheerResponse.Alert("Item '" + selectedItem.Name + "' does not have any child items that are locked",
+                    false,
+                    ModalTitle);
                 return;
             }
 
@@ -41,9 +41,9 @@ namespace ChildrenUnlocker
                 UnwritableItems = writeableItemsCollection.UnwriteableItems,
             };
 
-            SheerResponse.Alert(string.Format("<p>{0}</p>", result.AlertMessage), 
+            SheerResponse.Alert(String.Format("<div>{0}<div>", result.AlertMessageHtml), 
                 false,
-                "Unlock Items");
+                ModalTitle);
         }
     }
 }
