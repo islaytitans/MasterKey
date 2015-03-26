@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
-using ChildrenUnlocker.Entities;
-using ChildrenUnlocker.Interfaces;
+using MasterKey.Entities;
+using MasterKey.Interfaces;
 using Sitecore;
 using Sitecore.Diagnostics;
 using Sitecore.Shell.Framework.Commands;
 using Sitecore.Web.UI.Sheer;
 
-namespace ChildrenUnlocker
+namespace MasterKey
 {
     [Serializable]
     public class UnlockChildItems : Command
@@ -24,7 +24,7 @@ namespace ChildrenUnlocker
             if (!lockedChildren.Any())
             {
                 SheerResponse.Alert("Item '" + selectedItem.Name + "' does not have any child items that are locked",
-                    false, ChildrenUnlocker.UnlockUtility.ModalTitle);
+                    false, MasterKey.UnlockUtility.ModalTitle);
                 return;
             }
 
@@ -40,7 +40,7 @@ namespace ChildrenUnlocker
             };
 
             SheerResponse.Alert(String.Format("<div>{0}<div>", result.AlertMessageHtml), 
-                false, ChildrenUnlocker.UnlockUtility.ModalTitle);
+                false, MasterKey.UnlockUtility.ModalTitle);
         }
     }
 }

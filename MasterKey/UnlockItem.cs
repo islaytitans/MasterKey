@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Linq;
-using ChildrenUnlocker.Entities;
-using ChildrenUnlocker.Interfaces;
+using MasterKey.Interfaces;
 using Sitecore;
 using Sitecore.Data.Items;
 using Sitecore.Diagnostics;
 using Sitecore.Shell.Framework.Commands;
 using Sitecore.Web.UI.Sheer;
 
-namespace ChildrenUnlocker
+namespace MasterKey
 {
     [Serializable]
     public class UnlockItem : Command

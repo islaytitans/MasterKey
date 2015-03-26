@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sitecore.Data.Items;
 
-namespace ChildrenUnlocker.Entities
+namespace MasterKey.Entities
 {
     [Serializable]
     public class UnlockItemsResult

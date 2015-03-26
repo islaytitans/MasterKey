@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ChildrenUnlocker.Entities;
+using MasterKey.Entities;
 using Sitecore.Data.Items;
 
-namespace ChildrenUnlocker.Interfaces
+namespace MasterKey.Interfaces
 {
     public interface IUnlockUtility
     {
