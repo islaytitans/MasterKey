@@ -12,7 +12,6 @@ namespace ChildrenUnlocker
     [Serializable]
     public class UnlockChildItems : Command
     {
-        public const string ModalTitle = "Unlock Items";
         protected IUnlockUtility UnlockUtility = new UnlockUtility();
 
         public override void Execute([NotNull] CommandContext context)
@@ -25,8 +24,7 @@ namespace ChildrenUnlocker
             if (!lockedChildren.Any())
             {
                 SheerResponse.Alert("Item '" + selectedItem.Name + "' does not have any child items that are locked",
-                    false,
-                    ModalTitle);
+                    false, ChildrenUnlocker.UnlockUtility.ModalTitle);
                 return;
             }
 
@@ -42,8 +40,7 @@ namespace ChildrenUnlocker
             };
 
             SheerResponse.Alert(String.Format("<div>{0}<div>", result.AlertMessageHtml), 
-                false,
-                ModalTitle);
+                false, ChildrenUnlocker.UnlockUtility.ModalTitle);
         }
     }
 }

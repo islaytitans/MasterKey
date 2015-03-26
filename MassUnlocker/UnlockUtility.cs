@@ -12,6 +12,8 @@ namespace ChildrenUnlocker
 {
     public class UnlockUtility : IUnlockUtility
     {
+        public const string ModalTitle = "Unlock Items";
+
         public WritableItemsCollection SortWritableItems(IEnumerable<Item> items)
         {
             var writeableItems = new WritableItemsCollection();
