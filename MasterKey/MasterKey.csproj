@@ -46,6 +46,10 @@
     <Compile Include="Entities\UnlockItemsResult.cs" />
     <Compile Include="Entities\WritableItemsCollection.cs" />
     <Compile Include="Interfaces\IUnlockUtility.cs" />
+    <Compile Include="Pipelines\UnlockItems\UnlockItems.cs" />
+    <Compile Include="Pipelines\UnlockItems\GetItemArgs.cs" />
+    <Compile Include="Pipelines\UnlockItems\UnlockItemArgs.cs" />
+    <Compile Include="Pipelines\UnlockItems\GetItems.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnlockUtility.cs" />
     <Compile Include="UnlockChildItems.cs" />

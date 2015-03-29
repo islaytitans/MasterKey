@@ -12,5 +12,9 @@ namespace MasterKey.Interfaces
     {
         WritableItemsCollection SortWritableItems(IEnumerable<Item> items);
         Item UnlockItem(Item item);
+        UnlockItemsResult UnlockChildren(Item parent);
+        UnlockItemsResult UnlockItems(IEnumerable<Item> items);
+        IEnumerable<Item> GetLockedChildren(Item parent);
+        IEnumerable<Item> GetLockedItems(IEnumerable<Item> items);
     }
 }

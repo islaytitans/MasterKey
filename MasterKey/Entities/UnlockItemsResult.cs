@@ -10,6 +10,7 @@ namespace MasterKey.Entities
     [Serializable]
     public class UnlockItemsResult
     {
+        public bool? HasLockedItems { get; set; }
         public IEnumerable<Item> UnlockedItems { get; set; }
         public IEnumerable<Item> FailedUnlockedItems { get; set; }
         public IEnumerable<Item> UnwritableItems { get; set; }

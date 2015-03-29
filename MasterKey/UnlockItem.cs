@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using MasterKey.Interfaces;
+using MasterKey.Pipelines.UnlockItems;
 using Sitecore;
 using Sitecore.Data.Items;
 using Sitecore.Diagnostics;
@@ -25,17 +26,7 @@ namespace MasterKey
                 UnlockUtility.UnlockItem(selectedItem);
             }
 
-            var lockedChildren = selectedItem.Children.Where(i => i.Locking.IsLocked()).ToList();
-            if (!lockedChildren.Any())
-                return;
-
-            var writeableItemsCollection = UnlockUtility.SortWritableItems(lockedChildren);
-            if (!writeableItemsCollection.WritableItems.Any())
-            {
-                return;
-            }
-
-            SheerResponse.YesNoCancel("Unlock children?", "200", "200");
+            Sitecore.Context.ClientPage.Start("UnlockItemsChildren", new UnlockItemArgs() {Item = selectedItem });
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Linq;
 using MasterKey.Entities;
 using MasterKey.Interfaces;
+using MasterKey.Pipelines.UnlockItems;
 using Sitecore;
 using Sitecore.Diagnostics;
 using Sitecore.Shell.Framework.Commands;
@@ -20,27 +21,7 @@ namespace MasterKey
             if (selectedItem == null)
                 return;
 
-            var lockedChildren = selectedItem.Children.Where(i => i.Locking.IsLocked()).ToList();
-            if (!lockedChildren.Any())
-            {
-                SheerResponse.Alert("Item '" + selectedItem.Name + "' does not have any child items that are locked",
-                    false, MasterKey.UnlockUtility.ModalTitle);
-                return;
-            }
-
-            var writeableItemsCollection = UnlockUtility.SortWritableItems(lockedChildren);
-
-            var unlockedItems = writeableItemsCollection.WritableItems.Select(UnlockUtility.UnlockItem).ToList();
-
-            var result = new UnlockItemsResult()
-            {
-                UnlockedItems = unlockedItems,
-                FailedUnlockedItems = writeableItemsCollection.WritableItems.Where(i => !unlockedItems.Contains(i)),
-                UnwritableItems = writeableItemsCollection.UnwriteableItems,
-            };
-
-            SheerResponse.Alert(String.Format("<div>{0}<div>", result.AlertMessageHtml), 
-                false, MasterKey.UnlockUtility.ModalTitle);
+            Sitecore.Context.ClientPage.Start("UnlockChildren", new UnlockItemArgs() { Item = selectedItem, UnlockChildren = true});
         }
     }
 }
