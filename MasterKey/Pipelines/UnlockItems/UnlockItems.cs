@@ -57,19 +57,26 @@ namespace MasterKey.Pipelines.UnlockItems
 
         private IUnlockUtility _unlockUtility = new UnlockUtility();
 
-        public void DetermineIfItemHasUnlockableChildren(UnlockItemArgs args)
+        public void DetermineIfItemHasLockedChildren(UnlockItemArgs args)
         {
             Assert.ArgumentNotNull(args, "args");
             Assert.ArgumentNotNull(args.Item, "args.Item");
 
-            var lockedChildren = _unlockUtility.GetLockedChildren(args.Item).ToList();
-            if (!lockedChildren.Any())
+            args.ChildItems = _unlockUtility.GetLockedChildren(args.Item).ToList();
+
+            if (!args.ChildItems.Any())
             {
                 args.AbortPipeline();
                 return;
             }
+        }
 
-            var writeableItemsCollection = _unlockUtility.SortWritableItems(lockedChildren);
+        public void DetermineIfItemsAreWritable(UnlockItemArgs args)
+        {
+            Assert.ArgumentNotNull(args, "args");
+            Assert.ArgumentNotNull(args.ChildItems, "args.ChildItems");
+
+            var writeableItemsCollection = _unlockUtility.SortWritableItems(args.ChildItems);
             if (!writeableItemsCollection.WritableItems.Any())
             {
                 args.AbortPipeline();

@@ -28,7 +28,7 @@ namespace MasterKey.Entities
             get
             {
                 return string.Format("Failed to unlock {0} item{1}.", FailedUnlockedItems.Count(),
-                    UnlockedItems.Count() > 1 ? "s" : string.Empty);
+                    FailedUnlockedItems.Count() > 1 ? "s" : string.Empty);
             }
         }
         public string UnwritableAlertMessage
@@ -56,8 +56,8 @@ namespace MasterKey.Entities
                 }
                 if (UnwritableItems.Any())
                 {
-                    alert.Append(string.Format("<p>" + UnwritableAlertMessage + "</p><div style=\"padding-left: 2%;\"><ul>{0}</ul></div>", 
-                        string.Join(string.Empty, UnlockedItems.Select(i => "<li>" + i.Name + "</li>").ToArray())));
+                    alert.Append(string.Format("<p>" + UnwritableAlertMessage + "</p><div style=\"padding-left: 2%;\"><ul>{0}</ul></div>",
+                        string.Join(string.Empty, UnwritableItems.Select(i => "<li>" + i.Name + "</li>").ToArray())));
                 }
 
                 return alert.ToString();

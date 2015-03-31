@@ -67,7 +67,7 @@ namespace MasterKey
             if (!itemList.Any())
                 return writeableItems;
 
-            writeableItems.WritableItems = itemList.Where(i => i.Access.CanWriteLanguage()).ToList();
+            writeableItems.WritableItems = itemList.Where(i => i.Access.CanWrite() &&  i.Access.CanWriteLanguage()).ToList();
             writeableItems.UnwriteableItems = itemList.Where(j => !writeableItems.WritableItems.Contains(j)).ToList();
 
             return writeableItems;
