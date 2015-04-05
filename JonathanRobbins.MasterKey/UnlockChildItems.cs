@@ -19,7 +19,7 @@ namespace JonathanRobbins.MasterKey
             if (selectedItem == null)
                 return;
 
-            Sitecore.Context.ClientPage.Start("UnlockChildren", new UnlockItemArgs() { Item = selectedItem, UnlockChildren = true});
+            Sitecore.Context.ClientPage.Start("uiUnlockChildren", new UnlockItemArgs() { Item = selectedItem, UnlockChildren = true});
         }
     }
 }

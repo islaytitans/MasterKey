@@ -24,7 +24,7 @@ namespace JonathanRobbins.MasterKey
                 UnlockUtility.UnlockItem(selectedItem);
             }
 
-            Sitecore.Context.ClientPage.Start("UnlockItemsChildren", new UnlockItemArgs() {Item = selectedItem });
+            Sitecore.Context.ClientPage.Start("uiUnlockItemsChildren", new UnlockItemArgs() {Item = selectedItem });
         }
     }
 }
