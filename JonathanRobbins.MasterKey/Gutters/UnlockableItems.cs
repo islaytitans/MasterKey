@@ -1,14 +1,22 @@
-﻿using Sitecore.Data.Items;
+﻿using System;
+using JonathanRobbins.MasterKey.Interfaces;
+using Sitecore;
+using Sitecore.Data.Items;
 using Sitecore.Globalization;
+using Sitecore.Security.AccessControl;
+using Sitecore.Security.Accounts;
 using Sitecore.Shell.Applications.ContentEditor.Gutters;
 
 namespace JonathanRobbins.MasterKey.Gutters
 {
+    [Serializable]
     public class UnlockableItems : GutterRenderer
     {
+        private IUnlockUtility _unlockUtility = new UnlockUtility();
+
         protected override GutterIconDescriptor GetIconDescriptor(Item item)
         {
-            if (!item.Locking.IsLocked() || !item.Access.CanWrite() ||  !item.Access.CanWriteLanguage())
+            if (!_unlockUtility.UnlockPermitted(item))
                 return (GutterIconDescriptor)null;
 
             var gutterIconDescriptor = new GutterIconDescriptor
@@ -17,10 +25,9 @@ namespace JonathanRobbins.MasterKey.Gutters
                 Tooltip = Translate.Text("Locked by") + " " + item.Locking.GetOwnerWithoutDomain()
             };
 
-            if (item.Locking.CanUnlock() && item.Access.CanWrite() && item.Access.CanWriteLanguage() &&
-                !item.Appearance.ReadOnly)
+            if (_unlockUtility.UnlockPermitted(item))
                 gutterIconDescriptor.Click = "MasterKey:UnlockItem(id=" + (object)item.ID + ")";
-            
+
             return gutterIconDescriptor;
         }
     }

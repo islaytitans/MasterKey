@@ -12,5 +12,6 @@ namespace JonathanRobbins.MasterKey.Interfaces
         UnlockItemsResult UnlockItems(IEnumerable<Item> items);
         IEnumerable<Item> GetLockedChildren(Item parent);
         IEnumerable<Item> GetLockedItems(IEnumerable<Item> items);
+        bool UnlockPermitted(Item item);
     }
 }

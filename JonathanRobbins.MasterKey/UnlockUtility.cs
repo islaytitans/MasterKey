@@ -65,7 +65,7 @@ namespace JonathanRobbins.MasterKey
             if (!itemList.Any())
                 return writeableItems;
 
-            writeableItems.WritableItems = itemList.Where(i => i.Access.CanWrite() &&  i.Access.CanWriteLanguage()).ToList();
+            writeableItems.WritableItems = itemList.Where(UnlockPermitted).ToList();
             writeableItems.UnwriteableItems = itemList.Where(j => !writeableItems.WritableItems.Contains(j)).ToList();
 
             return writeableItems;
@@ -79,6 +79,13 @@ namespace JonathanRobbins.MasterKey
         public IEnumerable<Item> GetLockedItems(IEnumerable<Item> items)
         {
             return items.Where(i => i.Locking.IsLocked()).ToList();
+        }
+
+        public bool UnlockPermitted(Item i)
+        {
+            if (i.Appearance.ReadOnly || !i.Access.CanWrite() || (!i.Locking.HasLock() || !i.Access.CanWriteLanguage()))
+                return false;
+            return true;
         }
     }
 }

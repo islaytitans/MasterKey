@@ -7,6 +7,7 @@ using Sitecore.Web.UI.Sheer;
 
 namespace JonathanRobbins.MasterKey.Pipelines.UnlockItems
 {
+    [Serializable]
     public class UnlockItems
     {
         private string _unlockChildrenMessage;

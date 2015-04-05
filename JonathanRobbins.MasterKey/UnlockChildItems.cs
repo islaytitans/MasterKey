@@ -4,6 +4,8 @@ using JonathanRobbins.MasterKey.Interfaces;
 using JonathanRobbins.MasterKey.Pipelines.UnlockItems;
 using JonathanRobbins.MasterKey;
 using Sitecore;
+using Sitecore.Data.Items;
+using Sitecore.Diagnostics;
 using Sitecore.Shell.Framework.Commands;
 
 namespace JonathanRobbins.MasterKey
@@ -20,6 +22,23 @@ namespace JonathanRobbins.MasterKey
                 return;
 
             Sitecore.Context.ClientPage.Start("uiUnlockChildren", new UnlockItemArgs() { Item = selectedItem, UnlockChildren = true});
+        }
+
+        public override CommandState QueryState(CommandContext context)
+        {
+            Assert.ArgumentNotNull((object)context, "context");
+            if (context.Items.Length != 1)
+                return CommandState.Disabled;
+            Item item = context.Items[0];
+            if (!item.Children.Any())
+                return CommandState.Disabled;
+
+            bool permittedUnlock = item.Children.Any(c => UnlockUtility.UnlockPermitted(c));
+            if (Context.IsAdministrator)
+                return !permittedUnlock ? CommandState.Disabled : CommandState.Enabled;
+            if (!permittedUnlock)
+                return CommandState.Disabled;
+            return base.QueryState(context);
         }
     }
 }
