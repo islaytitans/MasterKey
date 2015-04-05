@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Sitecore.Data.Items;
 
-namespace MasterKey.Entities
+namespace JonathanRobbins.MasterKey.Entities
 {
     [Serializable]
     public class UnlockItemsResult

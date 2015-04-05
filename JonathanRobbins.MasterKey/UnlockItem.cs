@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Linq;
-using MasterKey.Interfaces;
-using MasterKey.Pipelines.UnlockItems;
+using JonathanRobbins.MasterKey.Interfaces;
+using JonathanRobbins.MasterKey.Pipelines.UnlockItems;
+using JonathanRobbins.MasterKey;
 using Sitecore;
-using Sitecore.Data.Items;
-using Sitecore.Diagnostics;
 using Sitecore.Shell.Framework.Commands;
-using Sitecore.Web.UI.Sheer;
 
-namespace MasterKey
+namespace JonathanRobbins.MasterKey
 {
     [Serializable]
     public class UnlockItem : Command

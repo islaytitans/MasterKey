@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MasterKey.Entities;
+﻿using System.Collections.Generic;
+using JonathanRobbins.MasterKey.Entities;
 using Sitecore.Data.Items;
 
-namespace MasterKey.Interfaces
+namespace JonathanRobbins.MasterKey.Interfaces
 {
     public interface IUnlockUtility
     {

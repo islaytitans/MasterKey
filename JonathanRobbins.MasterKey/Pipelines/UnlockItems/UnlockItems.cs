@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MasterKey.Entities;
-using MasterKey.Interfaces;
+using JonathanRobbins.MasterKey.Interfaces;
 using Sitecore.Diagnostics;
 using Sitecore.StringExtensions;
 using Sitecore.Web.UI.Sheer;
 
-namespace MasterKey.Pipelines.UnlockItems
+namespace JonathanRobbins.MasterKey.Pipelines.UnlockItems
 {
     public class UnlockItems
     {
@@ -122,13 +118,13 @@ namespace MasterKey.Pipelines.UnlockItems
                 && result.HasLockedItems.Value)
             {
                 SheerResponse.Alert("No locked child items were found",
-                    false, MasterKey.UnlockUtility.ModalTitle);
+                    false, UnlockUtility.ModalTitle);
                 return;
             }
             else
             {
                 SheerResponse.Alert(String.Format("<div>{0}<div>", result.AlertMessageHtml),
-                    false, MasterKey.UnlockUtility.ModalTitle);
+                    false, UnlockUtility.ModalTitle);
             }
         }
     }

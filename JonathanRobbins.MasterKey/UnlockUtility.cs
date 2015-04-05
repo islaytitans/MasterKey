@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MasterKey.Entities;
-using MasterKey.Interfaces;
+using JonathanRobbins.MasterKey.Entities;
+using JonathanRobbins.MasterKey.Interfaces;
 using Sitecore.Data.Items;
 using Sitecore.Diagnostics;
 
-namespace MasterKey
+namespace JonathanRobbins.MasterKey
 {
     public class UnlockUtility : IUnlockUtility
     {

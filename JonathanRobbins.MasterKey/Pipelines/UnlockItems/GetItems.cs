@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Sitecore.Diagnostics;
 
-namespace MasterKey.Pipelines.UnlockItems
+namespace JonathanRobbins.MasterKey.Pipelines.UnlockItems
 {
     public class GetItems
     {

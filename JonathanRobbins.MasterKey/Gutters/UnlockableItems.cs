@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sitecore.Data.Items;
+﻿using Sitecore.Data.Items;
 using Sitecore.Globalization;
 using Sitecore.Shell.Applications.ContentEditor.Gutters;
 
-namespace MasterKey.Gutters
+namespace JonathanRobbins.MasterKey.Gutters
 {
     public class UnlockableItems : GutterRenderer
     {
