@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Entities\UnlockItemsResult.cs" />
     <Compile Include="Entities\WritableItemsCollection.cs" />
+    <Compile Include="Gutters\UnlockableItems.cs" />
     <Compile Include="Interfaces\IUnlockUtility.cs" />
     <Compile Include="Pipelines\UnlockItems\UnlockItems.cs" />
     <Compile Include="Pipelines\UnlockItems\GetItemArgs.cs" />
