@@ -21,7 +21,7 @@ namespace JonathanRobbins.MasterKey
             if (selectedItem == null)
                 return;
 
-            if (selectedItem.Locking.IsLocked() && _unlockUtility.UnlockPermitted(selectedItem))
+            if (selectedItem.Locking.IsLocked())
             {
                 _unlockUtility.UnlockItem(selectedItem);
             }

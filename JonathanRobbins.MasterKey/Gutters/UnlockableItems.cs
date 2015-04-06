@@ -25,7 +25,7 @@ namespace JonathanRobbins.MasterKey.Gutters
                 Tooltip = Translate.Text("Locked by") + " " + item.Locking.GetOwnerWithoutDomain()
             };
 
-            if (_unlockUtility.UnlockPermitted(item))
+            //if (_unlockUtility.UnlockPermitted(item))
                 gutterIconDescriptor.Click = "MasterKey:UnlockItem(id=" + (object)item.ID + ")";
 
             return gutterIconDescriptor;

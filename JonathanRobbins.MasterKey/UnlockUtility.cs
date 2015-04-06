@@ -83,6 +83,8 @@ namespace JonathanRobbins.MasterKey
 
         public bool UnlockPermitted(Item i)
         {
+            if (Sitecore.Context.IsAdministrator)
+                return i.Locking.IsLocked();
             if (i.Appearance.ReadOnly || !i.Access.CanWrite() || (!i.Locking.HasLock() || !i.Access.CanWriteLanguage()))
                 return false;
             return true;

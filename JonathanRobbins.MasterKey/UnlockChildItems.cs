@@ -33,9 +33,10 @@ namespace JonathanRobbins.MasterKey
             if (!item.Children.Any())
                 return CommandState.Disabled;
 
-            bool permittedUnlock = item.Children.Any(c => UnlockUtility.UnlockPermitted(c));
             if (Context.IsAdministrator)
-                return !permittedUnlock ? CommandState.Disabled : CommandState.Enabled;
+                return !item.Children.Any(c => c.Locking.IsLocked()) ? CommandState.Disabled : CommandState.Enabled;
+
+            bool permittedUnlock = item.Children.Any(c => UnlockUtility.UnlockPermitted(c));
             if (!permittedUnlock)
                 return CommandState.Disabled;
             return base.QueryState(context);
