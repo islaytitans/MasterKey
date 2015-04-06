@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using JonathanRobbins.MasterKey.Interfaces;
 using Sitecore.Diagnostics;
 using Sitecore.StringExtensions;
@@ -115,17 +117,29 @@ namespace JonathanRobbins.MasterKey.Pipelines.UnlockItems
             Assert.ArgumentNotNull(args.ChildItems, "args.ChildItems");
             var result = _unlockUtility.UnlockItems(args.ChildItems);
 
-            if (result.HasLockedItems.HasValue
-                && result.HasLockedItems.Value)
+            if (result.HasLockedItems.HasValue && result.HasLockedItems.Value)
             {
-                SheerResponse.Alert("No locked child items were found",
-                    false, UnlockUtility.ModalTitle);
-                return;
+                try
+                {
+                    typeof (SheerResponse).InvokeMember("Alert", BindingFlags.Static | BindingFlags.InvokeMethod, 
+                        null, null, new object[3] { "No locked child items were found", false, UnlockUtility.ModalTitle });
+                }
+                catch (MissingMethodException ex)
+                {
+                    SheerResponse.Alert("No locked child items were found", false);
+                }
             }
             else
             {
-                SheerResponse.Alert(String.Format("<div>{0}<div>", result.AlertMessageHtml),
-                    false, UnlockUtility.ModalTitle);
+                try
+                {
+                    typeof(SheerResponse).InvokeMember("Alert", BindingFlags.Static | BindingFlags.InvokeMethod,
+                        null, null, new object[3] { String.Format("<div>{0}<div>", result.AlertMessageHtml), false, UnlockUtility.ModalTitle });
+                }
+                catch (MissingMethodException ex)
+                {
+                    SheerResponse.Alert(result.AlertMessage, false);
+                }
             }
         }
     }

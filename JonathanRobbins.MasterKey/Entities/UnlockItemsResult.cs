@@ -39,6 +39,30 @@ namespace JonathanRobbins.MasterKey.Entities
             }
         }
 
+        public string AlertMessage
+        {
+            get
+            {
+                var alert = new StringBuilder(string.Empty);
+
+                if (UnlockedItems.Any())
+                {
+                    alert.Append(UnlockedAlertMessage);
+                }
+                if (FailedUnlockedItems.Any())
+                {
+                    alert.Append(FailedUnlockAlertMessage);
+                }
+                if (UnwritableItems.Any())
+                {
+                    alert.Append(string.Format(UnwritableAlertMessage+ "{0}",
+                        string.Join(",", UnwritableItems.Select(i => i.Name).ToArray())));
+                }
+
+                return alert.ToString();
+            }
+        }
+
         public string AlertMessageHtml
         {
             get
