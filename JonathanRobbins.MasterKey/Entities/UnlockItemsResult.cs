@@ -47,19 +47,19 @@ namespace JonathanRobbins.MasterKey.Entities
 
                 if (UnlockedItems.Any())
                 {
-                    alert.Append(UnlockedAlertMessage);
+                    alert.Append(UnlockedAlertMessage + " ");
                 }
                 if (FailedUnlockedItems.Any())
                 {
-                    alert.Append(FailedUnlockAlertMessage);
+                    alert.Append(FailedUnlockAlertMessage + " ");
                 }
                 if (UnwritableItems.Any())
                 {
-                    alert.Append(string.Format(UnwritableAlertMessage+ "{0}",
-                        string.Join(",", UnwritableItems.Select(i => i.Name).ToArray())));
+                    alert.Append(string.Format(UnwritableAlertMessage + " {0}",
+                        string.Join(", ", UnwritableItems.Select(i => i.Name).ToArray())));
                 }
 
-                return alert.ToString();
+                return alert.ToString().Trim();
             }
         }
 
